@@ -1,14 +1,21 @@
 import { LitElement, html, css } from 'lit';
-import { customElement } from 'lit/decorators';
+import { customElement, property } from 'lit/decorators.js';
 
 @customElement('auth-info')
 export class AuthInfo extends LitElement {
+  @property({ attribute: false })
+  isAuthenticated: Boolean;
+
+  constructor() {
+    super();
+    this.isAuthenticated = false;
+  }
+
   render() {
-    return html`
-      <div>
-        <h4>Hello World</h4>
-      </div>
-    `;
+    if (this.isAuthenticated) {
+      return html` <p>Hi, you're signed in</p> `;
+    }
+    return html` <p>Sing out</p> `;
   }
 
   static styles = css`
